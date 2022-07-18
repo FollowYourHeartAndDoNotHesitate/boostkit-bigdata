@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.UncheckedExecutionException;
-import com.huawei.boostkit.omnidata.decode.impl.OpenLooKengDeserializer;
+import io.prestosql.plugin.hive.omnidata.decode.impl.OpenLooKengDeserializer;
 import com.huawei.boostkit.omnidata.model.Predicate;
 import com.huawei.boostkit.omnidata.model.TaskSource;
 import com.huawei.boostkit.omnidata.model.datasource.DataSource;

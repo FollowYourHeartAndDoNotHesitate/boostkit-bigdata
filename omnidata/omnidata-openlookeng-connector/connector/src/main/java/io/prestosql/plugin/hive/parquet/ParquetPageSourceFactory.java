@@ -16,7 +16,7 @@ package io.prestosql.plugin.hive.parquet;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.huawei.boostkit.omnidata.decode.impl.OpenLooKengDeserializer;
+import io.prestosql.plugin.hive.omnidata.decode.impl.OpenLooKengDeserializer;
 import com.huawei.boostkit.omnidata.model.TaskSource;
 import com.huawei.boostkit.omnidata.model.datasource.DataSource;
 import com.huawei.boostkit.omnidata.reader.DataReader;

@@ -16,8 +16,27 @@ package com.huawei.boostkit.omnidata.exception;
 
 import static com.huawei.boostkit.omnidata.exception.OmniErrorCode.OMNIDATA_GENERIC_ERROR;
 
-public class OmniDataException {
+/**
+ * Varchar decode type
+ *
+ * @since 2022-07-18
+ */
+public class OmniDataException extends RuntimeException {
+    private static final  long serialVersionUID = -9034897193745766939L;
+
+    private final OmniErrorCode errorCode;
+
+    public OmniDataException(String message) {
+        super(message);
+        errorCode = OMNIDATA_GENERIC_ERROR;
+    }
+
+    public OmniDataException(OmniErrorCode omniErrorCode, String message) {
+        super(message);
+        errorCode = omniErrorCode;
+    }
+
     public OmniErrorCode getErrorCode() {
-        return OMNIDATA_GENERIC_ERROR;
+        return errorCode;
     }
 }
