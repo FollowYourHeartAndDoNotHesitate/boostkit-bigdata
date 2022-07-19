@@ -21,7 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 /**
- * Dcode Slice to type
+ * Decode Slice to type
  *
  * @param <T>
  * @since 2022-07-18

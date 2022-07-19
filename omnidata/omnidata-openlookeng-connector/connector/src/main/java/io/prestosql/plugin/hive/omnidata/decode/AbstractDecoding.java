@@ -155,7 +155,7 @@ public abstract class AbstractDecoding<T> implements Decoding<T> {
             return Optional.empty();
         }
 
-        // real null bits 8 at a time
+        // read null bits 8 at a time
         boolean[] valueIsNull = new boolean[positionCount];
         for (int position = 0; position < (positionCount & ~0b111); position += 8) {
             boolean[] nextEightValue = getIsNullValue(sliceInput.readByte());

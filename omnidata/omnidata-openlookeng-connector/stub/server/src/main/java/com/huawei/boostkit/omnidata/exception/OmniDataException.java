@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2018-2021. Huawei Technologies Co., Ltd. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +16,7 @@ package com.huawei.boostkit.omnidata.exception;
 import static com.huawei.boostkit.omnidata.exception.OmniErrorCode.OMNIDATA_GENERIC_ERROR;
 
 /**
- * Varchar decode type
+ * OmniDataException
  *
  * @since 2022-07-18
  */
@@ -28,6 +27,11 @@ public class OmniDataException extends RuntimeException {
 
     public OmniDataException(String message) {
         super(message);
+        errorCode = OMNIDATA_GENERIC_ERROR;
+    }
+
+    public OmniDataException(String message, Throwable throwable) {
+        super(message, throwable);
         errorCode = OMNIDATA_GENERIC_ERROR;
     }
 
