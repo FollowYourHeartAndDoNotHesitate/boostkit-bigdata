@@ -23,16 +23,17 @@ import io.prestosql.spi.block.Block;
 import io.prestosql.spi.block.BlockBuilder;
 import io.prestosql.spi.block.RowBlockBuilder;
 import io.prestosql.spi.block.SingleRowBlockWriter;
-import io.prestosql.spi.type.IntegerType;
 import io.prestosql.spi.type.MapType;
 import io.prestosql.spi.type.RowType;
 import io.prestosql.spi.type.StandardTypes;
 import io.prestosql.spi.type.Type;
 import io.prestosql.spi.type.TypeSignatureParameter;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.airlift.slice.Slices.wrappedBuffer;
 import static io.prestosql.metadata.MetadataManager.createTestMetadataManager;
 import static io.prestosql.spi.type.BigintType.BIGINT;
 import static io.prestosql.spi.type.BooleanType.BOOLEAN;
@@ -124,7 +125,7 @@ public class DeserializerTestUtils {
         singleRowBlockWriter.appendNull();
         singleRowBlockWriter.closeEntry();
 
-        pageBuilder.declarePosition(2);
+        pageBuilder.declarePositions(2);
 
         return pageBuilder;
     }
@@ -134,10 +135,45 @@ public class DeserializerTestUtils {
         blockBuilder.writeInt(1);
         blockBuilder.appendNull();
 
-        //DOUBLE
+        // DOUBLE
         blockBuilder = pageBuilder.getBlockBuilder(1);
         blockBuilder.writeLong(Double.doubleToLongBits(1.0));
         blockBuilder.appendNull();
 
+        // BOOLEAN false
+        blockBuilder = pageBuilder.getBlockBuilder(2);
+        blockBuilder.writeByte(0);
+        blockBuilder.appendNull();
+
+        // LONG
+        blockBuilder = pageBuilder.getBlockBuilder(3);
+        blockBuilder.writeLong(1);
+        blockBuilder.appendNull();
+
+        // VARCHAR
+        blockBuilder = pageBuilder.getBlockBuilder(4);
+        blockBuilder.writeBytes(wrappedBuffer("test".getBytes(StandardCharsets.UTF_8)), 0, "test".length());
+        blockBuilder.closeEntry();
+        blockBuilder.appendNull();
+
+        // SMALLINT
+        blockBuilder = pageBuilder.getBlockBuilder(5);
+        blockBuilder.writeShort(1);
+        blockBuilder.appendNull();
+
+        // DATE
+        blockBuilder = pageBuilder.getBlockBuilder(6);
+        blockBuilder.writeInt(1);
+        blockBuilder.appendNull();
+
+        // TINYINT
+        blockBuilder = pageBuilder.getBlockBuilder(7);
+        blockBuilder.writeByte(1);
+        blockBuilder.appendNull();
+
+        // REAL
+        blockBuilder = pageBuilder.getBlockBuilder(8);
+        blockBuilder.writeInt(Float.floatToIntBits((float) 1.0));
+        blockBuilder.appendNull();
     }
 }
